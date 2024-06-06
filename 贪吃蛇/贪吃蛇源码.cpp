@@ -56,17 +56,14 @@ int main()
 }
 void Menu() //主界面
 {
-	char gamename[] = "贪吃蛇";
-	char startgame[] = "1.开始游戏";
-	char endgame[] = "2.退出游戏";
 	initgraph(800, 600, NULL);
 	setbkcolor(RGB(245, 245, 220));//设置背景颜色
 	cleardevice();
 	settextcolor(100);
 	settextstyle(50, 25, "");//中文两字节宽度
-	outtextxy(325, 100, gamename);
-	outtextxy(275, 250, startgame);
-	outtextxy(275, 350, endgame);
+	outtextxy(325, 100, "贪吃蛇");
+	outtextxy(275, 250, "1.开始游戏");
+	outtextxy(275, 350, "2.退出游戏");
 }
 void CreatMap()
 {
@@ -78,20 +75,15 @@ void CreatMap()
 
 void game_info()
 {
-	char info_1[] = "说明：";
-	char info_2[] = "请使用W,A,S,D";
-	char info_3[] = "操作小蛇，努力获";
-	char info_4[] = "得更高的分数吧！";
-	char info_score[] = "得分：";
 	char score[10];
 	sprintf(score, "%d", score_value);
-	outtextxy(650, 100, info_1);
+	outtextxy(650, 100, "说明：");
 	settextstyle(20, 10, "");
-	outtextxy(640, 200, info_2);
-	outtextxy(620, 250, info_3);
-	outtextxy(620, 300, info_4);
+	outtextxy(640, 200, "请使用W,A,S,D");
+	outtextxy(620, 250, "操作小蛇，努力获");
+	outtextxy(620, 300, "得更高的分数吧！");
 	settextstyle(30, 15, "");
-	outtextxy(50, 20, info_score);
+	outtextxy(50, 20, "得分：");
 	outtextxy(120, 20, score);
 }
 
@@ -229,9 +221,8 @@ int CheckSnakeAlive()
 void GameOver()
 {
 	cleardevice();
-	char gameover[] = "游戏结束";
 	settextstyle(50, 25, NULL);
-	outtextxy(300, 100, gameover);
+	outtextxy(300, 100, "游戏结束");
 }
 void GameLoop()
 {
@@ -245,12 +236,7 @@ void GameLoop()
 		game_info();//游戏说明
 		draw_snake(initsnake(&head));//初始化并画出蛇
 		random_food(&food);//初始化食物
-		char death_reson1[] = "死亡原因:撞墙";
-		char death_reson2[] = "死亡原因:自食其身";
-		char regame[] = "按1重新来过";
-		char BackMenu[] = "按2返回主菜单";
-		char info_score[] = "得分：";
-		char score[10];
+		char score[10];//存储分数
 		int SnakeAlive = 1;//小蛇存货状态：状态0为死亡，1为存活
 		while (SnakeAlive)//绘图，检测键盘更新方向，判断死亡的核心循环
 		{
@@ -259,16 +245,16 @@ void GameLoop()
 			switch (CheckSnakeAlive())//死亡检测并区分死亡类型
 			{
 			case 0:break;
-			case 1:GameOver();  settextstyle(50, 20, ""); outtextxy(270, 200, death_reson1); SnakeAlive = 0; break;//撞墙
-			case 2:GameOver();  settextstyle(50, 20, ""); outtextxy(240, 200, death_reson2); SnakeAlive = 0; break;//自食其身
+			case 1:GameOver();  settextstyle(50, 20, ""); outtextxy(270, 200, "死亡原因:撞墙"); SnakeAlive = 0; break;//撞墙
+			case 2:GameOver();  settextstyle(50, 20, ""); outtextxy(240, 200, "死亡原因:自食其身"); SnakeAlive = 0; break;//自食其身
 			}
 		}
 		sprintf(score, "%d", score_value);//把分数存进数组里printf("here");
 
-		outtextxy(320, 300, info_score);
+		outtextxy(320, 300, "得分：");
 		outtextxy(420, 300, score);
-		outtextxy(290, 400, regame);
-		outtextxy(270, 500, BackMenu);
+		outtextxy(290, 400, "按1重新来过");
+		outtextxy(270, 500, "按2返回主菜单");
 		char input = _getch();
 		while (1)//键盘没敲击1或2时，重新等待键盘敲击
 		{
